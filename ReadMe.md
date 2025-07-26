@@ -40,7 +40,7 @@ The system records **video & audio responses**, analyzes **confidence levels** u
 ## 🛠 Installation
 
 ```bash
-git clone https://github.com/your-username/mock-interview-fastAPI.git
+git clone https://github.com/codeAshi/mock-interview-fastAPI.git
 cd "Mock Interview"
 ```
 ▶️ Running the Project
@@ -70,3 +70,39 @@ Would you also like me to:
 Ashish Bedare
 📧 bedareashish@gmail.com
 🌐 GitHub Profile
+
+# 🎥 Mock Interview System with Confidence Analysis (FastAPI)
+Mock Interview/
+
+│
+
+├── main.py # FastAPI main app
+
+├── cheating_detector.py # Cheating detection logic
+
+├── newModel.h5 # Deep learning model for confidence analysis
+
+│
+
+├── templates/ # HTML templates (Jinja2)
+
+│ ├── index.html
+
+│ ├── interview.html
+
+│ ├── confidence-score.html
+
+│ └── preview.html
+
+│
+
+├── static/ # CSS & other static files
+
+│ └── style.css
+
+│
+├── recordings/ # Saved video recordings
+
+├── audio_recordings/ # Saved audio recordings
+
+└── README.md # Project documentation
