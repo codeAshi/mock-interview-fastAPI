@@ -29,7 +29,7 @@ The system records **video & audio responses**, analyzes **confidence levels** u
 
 ## 📂 Project Structure
 Mock Interview/
-│
+│ \n
 ├── main.py # FastAPI main app
 ├── cheating_detector.py # Cheating detection logic
 ├── newModel.h5 # Deep learning model for confidence analysis
