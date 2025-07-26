@@ -71,7 +71,7 @@ Ashish Bedare
 📧 bedareashish@gmail.com
 🌐 GitHub Profile
 
-# 🎥 Mock Interview System with Confidence Analysis (FastAPI)
+# 🎥 Mock Interview System with Confidence Analysis (FastAPI) flow
 Mock Interview/
 
 │
@@ -86,23 +86,22 @@ Mock Interview/
 
 ├── templates/ # HTML templates (Jinja2)
 
-│ ├── index.html
+│              ├── index.html
 
-│ ├── interview.html
+│              ├── interview.html
 
-│ ├── confidence-score.html
+│              ├── confidence-score.html
 
-│ └── preview.html
+│              └── preview.html
 
 │
 
 ├── static/ # CSS & other static files
 
-│ └── style.css
+│              └── style.css
 
 │
 ├── recordings/ # Saved video recordings
 
 ├── audio_recordings/ # Saved audio recordings
 
-└── README.md # Project documentation
