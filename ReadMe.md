@@ -27,41 +27,46 @@ The system records **video & audio responses**, analyzes **confidence levels** u
 
 ---
 
-## 📂 Project Structure
-<html><body><p
-Mock Interview/
-│ \n
-├── main.py # FastAPI main app
-├── cheating_detector.py # Cheating detection logic
-├── newModel.h5 # Deep learning model for confidence analysis
-│
-├── templates/ # HTML templates (Jinja2)
-│ ├── index.html
-│ ├── interview.html
-│ ├── confidence-score.html
-│ └── preview.html
-│
-├── static/ # CSS & other static files
-│ └── style.css
-│
-├── recordings/ # Saved video recordings
-├── audio_recordings/ # Saved audio recordings
-└── README.md # Project documentationMock Interview/
-│ 
-├── main.py # FastAPI main app
-├── cheating_detector.py # Cheating detection logic
-├── newModel.h5 # Deep learning model for confidence analysis
-│
-├── templates/ # HTML templates (Jinja2)
-│ ├── index.html
-│ ├── interview.html
-│ ├── confidence-score.html
-│ └── preview.html
-│
-├── static/ # CSS & other static files
-│ └── style.css
-│
-├── recordings/ # Saved video recordings
-├── audio_recordings/ # Saved audio recordings
-└── README.md # Project documentation</p>
-</html>
+## 🚀 Features
+
+✅ **Video & Audio Recording** during interviews  
+✅ **Confidence Score Analysis** using a deep learning model  
+✅ **Cheating Detection** using computer vision  
+✅ **Interactive UI** (built with Jinja2 templates)  
+✅ **Real-time camera streaming**
+
+---
+
+## 🛠 Installation
+
+```bash
+git clone https://github.com/your-username/mock-interview-fastAPI.git
+cd "Mock Interview"
+```
+▶️ Running the Project
+```
+uvicorn main:app --reload
+Then open: http://127.0.0.1:8000
+```
+📌 Tech Stack
+Backend: FastAPI, Uvicorn
+
+Frontend: HTML (Jinja2 Templates), Chart.js
+
+Deep Learning: TensorFlow / Keras
+
+Media Processing: OpenCV, SoundDevice, SoundFile
+
+🤝 Contributing
+Pull requests are welcome! If you find bugs or want new features, feel free to open an issue.
+
+Would you also like me to:  
+✅ **Generate a full updated `README.md` file directly?**  
+✅ **Add screenshots or GIF preview of your UI (index.html, confidence-score.html) in README?**  
+✅ **Make a `.gitignore` to avoid uploading recordings, audio, etc. to GitHub?**
+
+👨‍💻 Author
+
+Ashish Bedare
+📧 bedareashish@gmail.com
+🌐 GitHub Profile
