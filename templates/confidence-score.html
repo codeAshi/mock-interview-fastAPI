@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidence Summary</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #382852);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        }
+        h2 {
+            margin-bottom: 10px;
+            color: #382852;
+        }
+        .summary-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-card h3 {
+            color: #28a745;
+            margin-bottom: 5px;
+        }
+        .chart-container {
+            width: 180px; /* ✅ Smaller Chart Size */
+            height: 180px;
+            margin: 0 auto 20px auto;
+        }
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .score-table th, .score-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .score-table th {
+            background: #382852;
+            color: #fff;
+        }
+        .btn {
+            display: inline-block;
+            background: #382852;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #271c3a;
+        }
+        #clipsSection {
+            margin-top: 20px;
+        }
+        video {
+            width: 250px;
+            border-radius: 8px;
+            margin: 8px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+        }
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Confidence Summary</h2>
+
+    <!-- ✅ Test Result -->
+    <div class="summary-card">
+        <h3>{{ test_result }}</h3>
+        <p>Overall Confidence: <strong>{{ overall_confidence }}%</strong></p>
+    </div>
+
+    <!-- ✅ Smaller Chart -->
+    <div class="chart-container">
+        <canvas id="summaryChart"></canvas>
+    </div>
+
+    <!-- ✅ Question Scores -->
+    <table class="score-table">
+        <thead>
+        <tr>
+            <th>Question</th>
+            <th>Confidence Score (%)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for q, score in question_scores %}
+        <tr>
+            <td>{{ q }}</td>
+            <td>{{ score }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- ✅ Toggle Clips -->
+    <button class="btn" onclick="showClips()">View Recorded Clips</button>
+
+    <div id="clipsSection" style="display:none;">
+        <h3>Recorded Clips</h3>
+        {% for clip in clips %}
+        <video controls>
+            <source src="{{ clip }}" type="video/mp4">
+        </video>
+        {% endfor %}
+
+        <h3>Cheating Clips</h3>
+        {% if cheating_clips %}
+            {% for cclip in cheating_clips %}
+            <video controls>
+                <source src="{{ cclip }}" type="video/mp4">
+            </video>
+            {% endfor %}
+        {% else %}
+            <p>No cheating detected ✅</p>
+        {% endif %}
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a class="btn" href="/preview">Back to Preview</a>
+    </div>
+</div>
+
+<script>
+    function showClips() {
+        document.getElementById("clipsSection").style.display = "block";
+    }
+
+    const ctx = document.getElementById('summaryChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Confident', 'Unconfident'],
+            datasets: [{
+                data: [{{ overall_confidence }}, {{ 100 - overall_confidence }}],
+                backgroundColor: ['#28a745', '#dc3545']
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '70%', // ✅ Thinner ring, looks cleaner
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+</script>
+</body>
+</html>

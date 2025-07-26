@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidence Summary</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .summary-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        .card {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .cheat-frames {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .cheat-frames img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+        }
+        .question-list {
+            list-style: none;
+            padding: 0;
+        }
+        .question-list li {
+            padding: 8px 10px;
+            margin-bottom: 5px;
+            background: #f1f1f1;
+            border-left: 5px solid #007bff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0;
+            text-align: center;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="summary-container">
+    <h2>Confidence Summary for {{filename}}</h2>
+
+    <div class="grid">
+        <!-- Confidence Doughnut Chart -->
+        <div class="card">
+            <canvas id="summaryChart" width="250" height="250"></canvas>
+        </div>
+
+        <!-- Question-wise Confidence -->
+        <div class="card">
+            <h3>Question-wise Confidence</h3>
+            <ul class="question-list" id="questionList">
+                <!-- JS will populate -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Cheating Frame Previews -->
+    <div class="card" style="margin-top:20px;">
+        <h3>Possible Cheating Frames</h3>
+        <div class="cheat-frames" id="cheatFrames">
+            <!-- JS will populate -->
+        </div>
+    </div>
+
+    <a href="/preview" class="back-btn">⬅ Back to Preview</a>
+</div>
+
+<script>
+    // Fetch confidence data from backend API
+    fetch(`/confidence-score/{{filename}}`)
+        .then(response => response.json())
+        .then(data => {
+            // --- Update Doughnut Chart ---
+            const ctx = document.getElementById('summaryChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Confident', 'Unconfident'],
+                    datasets: [{
+                        data: [data.confident, data.unconfident],
+                        backgroundColor: ['#28a745', '#dc3545']
+                    }]
+                }
+            });
+
+            // --- Update Question List ---
+            const qList = document.getElementById('questionList');
+            data.questions.forEach(q => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${q.text}</span> <strong>${q.confidence}%</strong>`;
+                qList.appendChild(li);
+            });
+
+            // --- Update Cheating Frames ---
+            const cheatDiv = document.getElementById('cheatFrames');
+            data.cheat_frames.forEach(frame => {
+                const img = document.createElement('img');
+                img.src = frame;
+                cheatDiv.appendChild(img);
+            });
+        })
+        .catch(err => console.error("Error loading confidence summary:", err));
+</script>
+</body>
+</html>

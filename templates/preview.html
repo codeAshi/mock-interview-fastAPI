@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Preview</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .summary-card {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .summary-card h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .summary-card .btn {
+            background: white;
+            color: #007bff;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .summary-card .btn:hover {
+            background: #f1f1f1;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .video-card {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .video-card video {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+        .video-card p {
+            margin: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .audio-card {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .audio-card audio {
+            width: 90%;
+        }
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back .btn {
+            background: #28a745;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Interview Preview</h2>
+
+    <!-- Summary Card -->
+    <div class="summary-card">
+        <h3>Overall Confidence Summary</h3>
+        <a class="btn" href="/confidence-score">View Confidence Report</a>
+    </div>
+
+    <!-- Videos Grid -->
+    <div class="video-grid">
+        {% for video in videos %}
+        <div class="video-card">
+            <video controls>
+                <source src="{{ video }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>Video {{ loop.index }}</p>
+
+            {% if loop.index <= audios|length %}
+            <div class="audio-card">
+                <audio controls>
+                    <source src="{{ audios[loop.index0] }}" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="back">
+        <a class="btn" href="/">Go to Home</a>
+    </div>
+</div>
+</body>
+</html>
