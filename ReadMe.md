@@ -2,7 +2,7 @@
 
 A **mock interview platform** built with **FastAPI**, designed to simulate real interview scenarios.  
 The system records **video & audio responses**, analyzes **confidence levels** using a deep learning model, and detects **possible cheating**.
-
+  
 ---
 
 ## 🚀 Features
