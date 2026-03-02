@@ -60,16 +60,10 @@ Media Processing: OpenCV, SoundDevice, SoundFile
 🤝 Contributing
 Pull requests are welcome! If you find bugs or want new features, feel free to open an issue.
 
-Would you also like me to:  
-✅ **Generate a full updated `README.md` file directly?**  
-✅ **Add screenshots or GIF preview of your UI (index.html, confidence-score.html) in README?**  
-✅ **Make a `.gitignore` to avoid uploading recordings, audio, etc. to GitHub?**
-
 👨‍💻 Author
-
 Ashish Bedare
 📧 bedareashish@gmail.com
-🌐 GitHub Profile
+🌐 https://github.com/codeAshi
 
 # 🎥 Mock Interview System with Confidence Analysis (FastAPI) flow
 Mock Interview/
