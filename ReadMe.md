@@ -61,7 +61,9 @@ Media Processing: OpenCV, SoundDevice, SoundFile
 Pull requests are welcome! If you find bugs or want new features, feel free to open an issue.
 
 👨‍💻 Author
+
 Ashish Bedare
+
 📧 bedareashish@gmail.com
 🌐 https://github.com/codeAshi
 
