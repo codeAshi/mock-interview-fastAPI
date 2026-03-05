@@ -67,37 +67,4 @@ Ashish Bedare
 📧 bedareashish@gmail.com
 🌐 https://github.com/codeAshi
 
-# 🎥 Mock Interview System with Confidence Analysis (FastAPI) flow
-Mock Interview/
-
-│
-
-├── main.py # FastAPI main app
-
-├── cheating_detector.py # Cheating detection logic
-
-├── newModel.h5 # Deep learning model for confidence analysis
-
-│
-
-├── templates/ # HTML templates (Jinja2)
-
-│              ├── index.html
-
-│              ├── interview.html
-
-│              ├── confidence-score.html
-
-│              └── preview.html
-
-│
-
-├── static/ # CSS & other static files
-
-│              └── style.css
-
-│
-├── recordings/ # Saved video recordings
-
-├── audio_recordings/ # Saved audio recordings
 
